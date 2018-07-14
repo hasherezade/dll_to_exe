@@ -13,11 +13,11 @@ set (srcs
 
 # general headers - they will be used for both EXE and DLL:
 set (hdrs
-#put your headers here
+	pe_handler.h
 )
 
 set (rsrc
-#put your resources here
+	pe_handler.cpp
 )
 
 
