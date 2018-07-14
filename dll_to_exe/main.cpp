@@ -31,9 +31,12 @@ int main(int argc, char *argv[])
     hndl.setDll();
     if (hndl.dllToExePatch()) {
         std::cout << "[OK] Converted successfuly."<< std::endl;
+    } else {
+        std::cout << "Could not convert!" << std::endl;
+        return -1;
     }
     if (hndl.savePe(outfile)) {
-        std::cout << "[OK] Module dumped to:" << outfile << std::endl;
+        std::cout << "[OK] Module dumped to: " << outfile << std::endl;
     }
     return 0;
 }
