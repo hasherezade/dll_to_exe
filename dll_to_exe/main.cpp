@@ -7,7 +7,8 @@
 int main(int argc, char *argv[])
 {
     if (argc < 3) {
-        std::cout << "args: <input exe> <output_file>" << std::endl;
+        std::cout << "DLL to EXE converter" << std::endl;
+        std::cout << "args: <input_dll> <output_exe>" << std::endl;
         system("pause");
         return 0;
     }
