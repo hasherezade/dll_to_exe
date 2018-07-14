@@ -4,7 +4,10 @@ bool PeHandler::isDll()
 {
     const IMAGE_FILE_HEADER* hdr = peconv::get_file_hdr(pe_ptr, v_size);
     if (!hdr) return false;
-    return (hdr->Characteristics & IMAGE_FILE_DLL);
+    if (hdr->Characteristics & IMAGE_FILE_DLL) {
+        return true;
+    }
+    return false;
 }
 
 bool PeHandler::setDll()
