@@ -31,8 +31,6 @@ public:
     bool dllToExePatch();
     bool savePe(const char *path);
 
-    bool isDllEntryStub();
-
 protected:
     BYTE * getCavePtr(size_t neededSize);
 

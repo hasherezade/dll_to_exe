@@ -19,28 +19,6 @@ bool PeHandler::setDll()
     return true;
 }
 
-bool PeHandler::isDllEntryStub()
-{
-    BYTE stub32[] = { 0x55, 0x8B, 0xEC, 0x56, 0x8B, 0x75, 0x0C, 0x57 };
-    BYTE stub64[] = { 0x48, 0x89, 0x5C, 0x24, 0x08, 0x48, 0x89, 0x74, 0x24, 0x10, 0x57, 0x48, 0x83, 0xEC, 0x20, 0x49 };
-    BYTE *stub = stub32;
-    size_t stub_size = sizeof(stub32);
-    if (is64bit) {
-        stub = stub64;
-        stub_size = sizeof(stub64);
-    }
-    
-    size_t max_size = this->v_size - this->ep;
-    if (max_size < stub_size) {
-        return false;
-    }
-    BYTE *ep_va = this->pe_ptr + this->ep;
-    if (memcmp(ep_va, stub, stub_size) == 0) {
-        return true;
-    }
-    return false;
-}
-
 BYTE* PeHandler::getCavePtr(size_t neededSize)
 {
     BYTE *cave = peconv::find_padding_cave(pe_ptr, v_size, neededSize, IMAGE_SCN_MEM_EXECUTE);
