@@ -64,7 +64,8 @@ bool PeHandler::dllToExePatch()
         0x6A, 0x00, // PUSH 0x0
         0x6A, 0x01, // PUSH 0x1
         0x50, // PUSH EAX
-        0xE8, 0xDE, 0xAD, 0xF0, 0x0D //CALL [ep]
+        0xE8, 0xDE, 0xAD, 0xF0, 0x0D, //CALL [ep]
+        0xC3
     };
 
     BYTE *back_stub = back_stub32;
@@ -77,7 +78,7 @@ bool PeHandler::dllToExePatch()
         return false;
     }
 
-    size_t call_offset = stub_size - 5;
+    size_t call_offset = stub_size - 6;
 
     BYTE* ptr = getCavePtr(stub_size);
     if (!ptr) {
