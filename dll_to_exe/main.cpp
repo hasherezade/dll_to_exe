@@ -24,10 +24,6 @@ int main(int argc, char *argv[])
         std::cout << "64-bit support not implemented yet!" << std::endl;
         return -1;
     }
-    if (!hndl.isDllEntryStub()) {
-        std::cout << "Unrecognized DLL stub!" << std::endl;
-        return -1;
-    }
     hndl.setDll();
     if (hndl.dllToExePatch()) {
         std::cout << "[OK] Converted successfuly."<< std::endl;
