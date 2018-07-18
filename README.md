@@ -4,6 +4,13 @@
 Converts a DLL into a ready-to-use EXE.<br/>
 <b>WARNING:</b> 64 bit DLLs are not supported yet.
 
+Clone:
+-
+Use recursive clone to get the repo together with all the submodules:
+<pre>
+git clone --recursive https://github.com/hasherezade/libpeconv_project_template.git
+</pre>
+
 Latest builds*:
 -
 *those builds are available for testing and they may be ahead of the official release:
