@@ -4,10 +4,12 @@
 #include "peconv.h"
 #include "pe_handler.h"
 
+#define VERSION "1.0"
+
 int main(int argc, char *argv[])
 {
     if (argc < 3) {
-        std::cout << "DLL to EXE converter" << std::endl;
+        std::cout << "DLL to EXE converter v "<< VERSION << " \n- for 32 & 64 bit DLLs -" << std::endl;
         std::cout << "args: <input_dll> <output_exe>" << std::endl;
         system("pause");
         return 0;
@@ -18,10 +20,6 @@ int main(int argc, char *argv[])
     PeHandler hndl(filename);
     if (!hndl.isDll()) {
         std::cout << "It is not a DLL!" << std::endl;
-        return -1;
-    }
-    if (hndl.is64()) {
-        std::cout << "64-bit support not implemented yet!" << std::endl;
         return -1;
     }
     hndl.setDll();
