@@ -4,10 +4,12 @@
 #include "peconv.h"
 #include "pe_handler.h"
 
+#define VERSION "1.0"
+
 int main(int argc, char *argv[])
 {
     if (argc < 3) {
-        std::cout << "DLL to EXE converter" << std::endl;
+        std::cout << "DLL to EXE converter v "<< VERSION << " \n- for 32 & 64 bit DLLs -" << std::endl;
         std::cout << "args: <input_dll> <output_exe>" << std::endl;
         system("pause");
         return 0;
