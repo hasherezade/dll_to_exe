@@ -20,10 +20,6 @@ int main(int argc, char *argv[])
         std::cout << "It is not a DLL!" << std::endl;
         return -1;
     }
-    if (hndl.is64()) {
-        std::cout << "64-bit support not implemented yet!" << std::endl;
-        return -1;
-    }
     hndl.setDll();
     if (hndl.dllToExePatch()) {
         std::cout << "[OK] Converted successfuly."<< std::endl;

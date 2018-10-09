@@ -46,16 +46,23 @@ bool PeHandler::dllToExePatch()
         0xC3
     };
 
+    BYTE back_stub64[] = {
+        0x65, 0x48, 0x8B, 0x0C, 0x25, 0x60, 0x00, 0x00, 0x00, // mov rcx,qword ptr gs:[0x60]
+        0x48, 0x8B, 0x4E, 0x10, // mov rcx,qword ptr ds:[rsi+10]
+        0x48, 0x8B, 0xF9, // mov rdi, rcx
+        0xBA, 0x01, 0x00, 0x00, 0x00, // mov edx, 1
+        0x48, 0x8B, 0xDA, // mov rbx, rdx
+        0x4C, 0x8B, 0xC0, // mov r8, rax
+        0xE9, 0xDE, 0xAD, 0xF0, 0x0D, //jmp [ep]
+        0xC3 //ret
+    };
+
     BYTE *back_stub = back_stub32;
     size_t stub_size = sizeof(back_stub32);
-
     if (is64bit) {
-        //TODO:
-        back_stub = nullptr;
-        stub_size = 0;
-        return false;
+        back_stub = back_stub64;
+        stub_size = sizeof(back_stub64);
     }
-
     size_t call_offset = stub_size - 6;
 
     BYTE* ptr = getCavePtr(stub_size);
