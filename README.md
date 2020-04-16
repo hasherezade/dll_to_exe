@@ -6,6 +6,8 @@
 Converts a DLL into a ready-to-use EXE.<br/>
 <b>Supports both 32 and 64 bit DLLs</b>
 
+***Read more [here](https://hshrzd.wordpress.com/2016/07/21/how-to-turn-a-dll-into-a-standalone-exe/).***
+
 Clone:
 -
 Use recursive clone to get the repo together with all the submodules:
