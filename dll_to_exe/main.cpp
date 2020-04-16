@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <windows.h>
 
-#include "peconv.h"
+#include <peconv.h>
 #include "pe_handler.h"
 
 #define VERSION "1.1"
