@@ -10,7 +10,7 @@ Converts a DLL into a ready-to-use EXE.<br/>
 
 Builds
 -
-Download the latest [release](https://github.com/hasherezade/pe_to_shellcode/releases).
+Download the latest [release](https://github.com/hasherezade/dll_to_exe/releases).
 
 Clone
 -
