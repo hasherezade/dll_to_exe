@@ -8,7 +8,11 @@ Converts a DLL into a ready-to-use EXE.<br/>
 
 ***Read more [here](https://hshrzd.wordpress.com/2016/07/21/how-to-turn-a-dll-into-a-standalone-exe/).***
 
-Clone:
+Builds
+-
+Download the latest [release](https://github.com/hasherezade/pe_to_shellcode/releases).
+
+Clone
 -
 Use recursive clone to get the repo together with all the submodules:
 <pre>
