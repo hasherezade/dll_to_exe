@@ -19,6 +19,15 @@ bool PeHandler::setDll()
     return true;
 }
 
+bool PeHandler::setDllCanNotMove()
+{
+    IMAGE_OPTIONAL_HEADER64* opt_hdr = static_cast<IMAGE_OPTIONAL_HEADER64*>(peconv::get_optional_hdr(pe_ptr, v_size));
+    if (!opt_hdr) return false;
+
+    opt_hdr->DllCharacteristics ^= IMAGE_DLLCHARACTERISTICS_DYNAMIC_BASE;
+    return true;
+}
+
 BYTE* PeHandler::getCavePtr(size_t neededSize)
 {
     BYTE *cave = peconv::find_padding_cave(pe_ptr, v_size, neededSize, IMAGE_SCN_MEM_EXECUTE);
