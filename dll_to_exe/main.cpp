@@ -10,12 +10,17 @@ int main(int argc, char *argv[])
 {
     if (argc < 3) {
         std::cout << "DLL to EXE converter v"<< VERSION << " \n- for 32 & 64 bit DLLs -" << std::endl;
-        std::cout << "args: <input_dll> <output_exe>" << std::endl;
+        std::cout << "args: <input_dll> <output_exe> [test_run?]" << std::endl;
         system("pause");
         return 0;
     }
     char *filename = argv[1];
     char *outfile = argv[2];
+    bool test_run = false;
+    if (argc > 3 && argv[3][0] == '1') {
+        test_run = true;
+        std::cout << "Test run enabled!\n";
+    }
 
     PeHandler hndl(filename);
     if (!hndl.isDll()) {
@@ -32,6 +37,9 @@ int main(int argc, char *argv[])
     }
     if (hndl.savePe(outfile)) {
         std::cout << "[OK] Module dumped to: " << outfile << std::endl;
+        if (test_run) {
+            return system(outfile);
+        }
     }
     return 0;
 }
