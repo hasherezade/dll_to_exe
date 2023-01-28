@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 2.8)
+cmake_minimum_required (VERSION 3.0)
 
 project ( dll_to_exe )
 
@@ -34,3 +34,5 @@ target_link_libraries ( ${PROJECT_NAME} ${PECONV_LIB} )
 
 #dependencies:
 add_dependencies( ${PROJECT_NAME} libpeconv )
+
+INSTALL( TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_PREFIX} COMPONENT ${PROJECT_NAME} )
