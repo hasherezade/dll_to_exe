@@ -9,7 +9,7 @@ enable_testing()
 
 # 0) does dll_to_exe run
 add_test(Dll2ExeRun "${CMAKE_INSTALL_PREFIX}//dll_to_exe.exe" "${CMAKE_INSTALL_PREFIX}//test_case1.dll" "${CMAKE_INSTALL_PREFIX}//test_case1.dll.exe")
-set_tests_properties(Dll2ExeRun PROPERTIES DEPENDS dll_to_exe test_case1)
+set_tests_properties(Dll2ExeRun PROPERTIES DEPENDS dll_to_exe)
 
 # 1) does the converted test application work
 add_test(ConvTestCase1 "${CMAKE_INSTALL_PREFIX}//test_case1.dll.exe" )
