@@ -29,14 +29,15 @@ before_build:
   - mkdir build
   - cd build
   - if [%env_arch%]==[x64] (
-    cmake .. -A x64 )
+    cmake .. -A x64 -DDLL2EXE_BUILD_TESTING=ON )
   - if [%env_arch%]==[x86] (
-    cmake .. )
+    cmake .. -A Win32 -DDLL2EXE_BUILD_TESTING=ON )
   - cmake -DCMAKE_INSTALL_PREFIX:PATH=%APPVEYOR_BUILD_FOLDER%/%APPVEYOR_REPO_COMMIT% ..
   
 build_script:
   - cmake --build . --config %CONFIGURATION% --target install
-  
+  - ctest -V
+
 after_build:
   - mkdir %artifactName%
   - cp %APPVEYOR_BUILD_FOLDER%/%APPVEYOR_REPO_COMMIT%/* %artifactName%
