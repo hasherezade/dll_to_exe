@@ -6,6 +6,35 @@
 
 #define VERSION "1.1"
 
+
+bool create_new_process(IN LPSTR path, OUT PROCESS_INFORMATION& pi)
+{
+    STARTUPINFO si;
+    memset(&si, 0, sizeof(STARTUPINFO));
+    si.cb = sizeof(STARTUPINFO);
+
+    memset(&pi, 0, sizeof(PROCESS_INFORMATION));
+
+    if (!CreateProcessA(
+        NULL,
+        path,
+        NULL, //lpProcessAttributes
+        NULL, //lpThreadAttributes
+        FALSE, //bInheritHandles
+        0, //dwCreationFlags
+        NULL, //lpEnvironment 
+        NULL, //lpCurrentDirectory
+        &si, //lpStartupInfo
+        &pi //lpProcessInformation
+    ))
+    {
+        std::cout << "[ERROR] CreateProcess failed, Error = " << std::hex << GetLastError() << std::endl;
+        return false;
+    }
+    std::cout << "[OK] Process: " << std::dec << pi.dwProcessId << " created from the converted file:" << std::endl;
+    return true;
+}
+
 int main(int argc, char *argv[])
 {
     if (argc < 3) {
@@ -38,7 +67,15 @@ int main(int argc, char *argv[])
     if (hndl.savePe(outfile)) {
         std::cout << "[OK] Module dumped to: " << outfile << std::endl;
         if (test_run) {
-            return system(outfile);
+            PROCESS_INFORMATION pi = { 0 };
+            if (create_new_process(outfile, pi) && pi.hThread) {
+                WaitForSingleObject(pi.hThread, INFINITE);
+                DWORD exitCode = 0;
+                GetExitCodeProcess(pi.hProcess, &exitCode);
+                std::cout << "[OK] Process finished with Exit Code: " << exitCode << "\n";
+            } else {
+                return -1;
+            }
         }
     }
     return 0;
