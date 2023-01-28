@@ -46,6 +46,7 @@ artifacts:
   - path: build\%artifactName%
   
 on_failure:
+  - cd %APPVEYOR_BUILD_FOLDER%/%APPVEYOR_REPO_COMMIT%
   - dir
   - 7z a about_failed.zip *
   - ps: Push-AppveyorArtifact about_failed.zip
