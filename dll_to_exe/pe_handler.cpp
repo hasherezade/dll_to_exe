@@ -19,6 +19,25 @@ bool PeHandler::setDll()
     return true;
 }
 
+bool PeHandler::clearGuardFlag()
+{
+    if (peconv::is64bit(pe_ptr)) {
+        IMAGE_OPTIONAL_HEADER64* opt_hdr64 = (IMAGE_OPTIONAL_HEADER64*)peconv::get_optional_hdr(pe_ptr, v_size);
+        if (!opt_hdr64) return false;
+
+        if (opt_hdr64->DllCharacteristics & IMAGE_DLLCHARACTERISTICS_GUARD_CF) {
+            opt_hdr64->DllCharacteristics ^= IMAGE_DLLCHARACTERISTICS_GUARD_CF;
+        }
+        return true;
+    }
+    IMAGE_OPTIONAL_HEADER32* opt_hdr32 = (IMAGE_OPTIONAL_HEADER32*)peconv::get_optional_hdr(pe_ptr, v_size);
+    if (!opt_hdr32) return false;
+    if (opt_hdr32->DllCharacteristics & IMAGE_DLLCHARACTERISTICS_GUARD_CF) {
+        opt_hdr32->DllCharacteristics ^= IMAGE_DLLCHARACTERISTICS_GUARD_CF;
+    }
+    return true;
+}
+
 BYTE* PeHandler::getCavePtr(size_t neededSize)
 {
     BYTE *cave = peconv::find_padding_cave(pe_ptr, v_size, neededSize, IMAGE_SCN_MEM_EXECUTE);
