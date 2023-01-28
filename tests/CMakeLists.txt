@@ -8,5 +8,5 @@ add_subdirectory ( test_case1 )
 
 # 0) does dll_to_exe run
 add_test(Dll2ExeRun "${CMAKE_INSTALL_PREFIX}//dll_to_exe.exe" "${CMAKE_INSTALL_PREFIX}//test_case1.dll" "${CMAKE_INSTALL_PREFIX}//test_case1.dll.exe" 1)
-set_tests_properties(ConvTestCase1 PROPERTIES PASS_REGULAR_EXPRESSION "finished")
+set_tests_properties(Dll2ExeRun PROPERTIES PASS_REGULAR_EXPRESSION "finished")
 
