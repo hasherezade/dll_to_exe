@@ -12,4 +12,4 @@ set_tests_properties(Dll2ExeRun PROPERTIES DEPENDS dll_to_exe)
 
 # 1) does the converted test application work
 add_test(ConvTestCase1 "${CMAKE_INSTALL_PREFIX}//test_case1.dll.exe" )
-#set_tests_properties(ConvTestCase1 PROPERTIES PASS_REGULAR_EXPRESSION "Test Case 1 finished")
+set_tests_properties(ConvTestCase1 PROPERTIES PASS_REGULAR_EXPRESSION "finished")
