@@ -20,5 +20,6 @@ add_subdirectory ( dll_to_exe )
 
 # Setup testing
 if(DLL2EXE_BUILD_TESTING)
+	enable_testing()
 	add_subdirectory ( tests )
 endif()

@@ -1,9 +1,8 @@
 cmake_minimum_required ( VERSION 3.0 )
+project (tests)
 
 #add the application that will be used for tests:
 add_subdirectory ( test_case1 )
-
-enable_testing()
 
 #WARNING: in order for tests to work, all the binaries must be installed by: cmake --build . --target install
 
